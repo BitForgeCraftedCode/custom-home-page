@@ -25,7 +25,7 @@ class SearchBars extends React.Component {
 		return(
 			<div className="searchBars">
 				<iframe
-					src="https://duckduckgo.com/search.html?duck=yes&prefill=Search DuckDuckGo"
+					src="https://duckduckgo.com/search.html?duck=yes&prefill=Search"
 					className="searchBars__DuckDuck"
 					title="Search DuckDuckGo"
 				>
