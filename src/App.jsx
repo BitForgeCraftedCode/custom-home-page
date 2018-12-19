@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Slider from "react-slick";
 
 import SearchBars from './components/SearchBars/SearchBars';
+import Clock from './components/Clock/Clock';
 
 class App extends Component {
     buildImages() {
@@ -61,6 +62,7 @@ class App extends Component {
         return (
             <div className="App">
                 <SearchBars />
+                <Clock />
                 <Slider className="slider" {...settings}>
                     {images}
                 </Slider>

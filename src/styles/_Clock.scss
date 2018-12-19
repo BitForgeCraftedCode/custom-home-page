@@ -1,0 +1,96 @@
+@charset "UTF-8";
+
+/*Styles for digital clock*/
+
+@font-face {
+    font-family: 'alarm_clockregular';
+    src: url('alarm_clock-webfont.woff2') format('woff2'),
+         url('alarm_clock-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.dateTime {
+	/*border: 2px solid red;*/
+	position: absolute;
+	top: 26%;
+	right: 0;
+
+	margin-top: 10px;
+	margin-right: 10px;
+
+	width: 95%;
+	height: 90px;
+
+	z-index: 2;
+}
+
+#time {
+	position: fixed;
+	top:26%;
+	right:0;
+
+	font-family: 'alarm_clockregular';
+	background-color: rgba(0,0,0,0.7);
+	font-weight: bold;
+	color: #3BFE04;
+	/*color: #FE0000;*/
+	font-size: 40px;
+
+	width: 95%;
+	height: 60px;
+
+	text-align: center;
+	vertical-align: middle;
+	line-height: 60px;
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+
+}
+
+
+#date {
+	position: fixed;
+	margin-top: 70px;
+
+	font-family: 'alarm_clockregular';
+	background-color: rgba(0,0,0,0.7);
+	text-transform: uppercase;
+	font-weight: bold;
+	color: #3BFE04;
+	/*color: #FE0000;*/
+	font-size: 20px;
+
+	width: 95%;
+	height: 30px;
+
+	text-align: center;
+	vertical-align: middle;
+	line-height: 30px;
+	border-bottom-right-radius: 15px;
+	border-bottom-left-radius: 15px;
+
+}
+
+@media screen and (min-width: 750px) {
+	.dateTime {
+		top: 0px;
+		right: 0px;
+
+		width: 45%;
+		height: 90px;
+	}
+
+	#time {
+		top: 0px;
+		right: 0px;
+		width: 45%;
+		height: 60px;
+	}
+
+	#date {
+		width: 45%;
+		height: 30px;
+	}
+}
+
