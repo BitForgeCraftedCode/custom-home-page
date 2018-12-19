@@ -1,0 +1,35 @@
+.App {
+  text-align: center;
+  overflow: hidden;
+}
+
+.slider {
+	max-width: 100vw;
+	max-height: 100vh;
+	&__img {
+		width: 100vw;
+		height: 100vh;
+		object-fit: cover;
+	}
+}
+
+.slick-next {
+	right: 35px;
+}
+
+.slick-prev {
+	z-index: 1000;
+	left: 35px;
+}
+
+.slick-dots {
+	bottom: 35px;
+}
+
+.slick-dots li.slick-active button:before {
+	color: red;
+}
+
+.slick-dots li button:before {
+	color: red
+}
