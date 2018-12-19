@@ -5,7 +5,7 @@ import SearchBars from './components/SearchBars/SearchBars';
 
 class App extends Component {
     buildImages() {
-        let folderChoice = 'Nature';
+        let folderChoice = 'Space';
         /*https://webpack.js.org/guides/dependency-management/
         require.context() function takes 3 args
         1. a directory to search
