@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Slider from "react-slick";
 
+import SearchBars from './components/SearchBars/SearchBars';
+
 class App extends Component {
     buildImages() {
         let folderChoice = 'Nature';
@@ -58,6 +60,7 @@ class App extends Component {
         };
         return (
             <div className="App">
+                <SearchBars />
                 <Slider className="slider" {...settings}>
                     {images}
                 </Slider>
