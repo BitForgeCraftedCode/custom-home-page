@@ -1,13 +1,10 @@
 import React from 'react';
-
+import throttle from 'lodash/throttle';
 import { connect } from 'react-redux';
+
 import { fetchCurrentWeatherData } from '../../redux/actions';
 
 class Weather extends React.Component {
-
-	componentDidMount() {
-		this.props.fetchCurrentWeatherData();
-	}
 
 	geolocation() {
 		if('geolocation' in navigator) {
@@ -23,7 +20,18 @@ class Weather extends React.Component {
 	render() {
 		this.geolocation();
 		return(
-			<div>Weather Widget</div>
+			<div className="weather">Weather Widget
+				<button
+					//only allow an weather api call once every 30 min
+					onClick={
+						throttle(() => {
+							this.props.fetchCurrentWeatherData();
+						}, 1800000)
+					}
+				>
+					Fetch weather
+				</button>
+			</div>
 		);
 	}
 }
