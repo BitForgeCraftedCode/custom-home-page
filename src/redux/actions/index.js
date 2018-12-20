@@ -1,8 +1,8 @@
 
 //using redux thunk the returned function has dispatch and getState
-export const fetchCurrentWeatherData = () => {
+export const fetchCurrentWeatherData = (lat, lng) => {
 	return (dispatch) => {
-		fetch('https://jsonplaceholde.typicode.com/users')
+		fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&APPID=dfc30b68dd8ff6cb50db4fccc515107a`)
 			.then(res => res.json())
 			.then(
 				(result) => {

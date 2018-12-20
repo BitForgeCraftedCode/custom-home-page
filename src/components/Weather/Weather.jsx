@@ -5,27 +5,41 @@ import { connect } from 'react-redux';
 import { fetchCurrentWeatherData } from '../../redux/actions';
 
 class Weather extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state={
+			lat:null,
+			lng:null
+		}
+	}
 
 	geolocation() {
 		if('geolocation' in navigator) {
 			console.log('geolocation available');
-			navigator.geolocation.getCurrentPosition(function(position) {
-  				console.log(position.coords.latitude, position.coords.longitude);
+			navigator.geolocation.getCurrentPosition((position) => {
+  				let latLong = [position.coords.latitude, position.coords.longitude];
+  				this.setState({lat: latLong[0]});
+  				this.setState({lng: latLong[1]});
 			});
 		}
 		else {
 			console.log('geolocation Not available');
 		}
 	}
+
 	render() {
 		this.geolocation();
+		let lat = this.state.lat;
+		let lng = this.state.lng;
+		console.log(lat,lng);
 		return(
+
 			<div className="weather">Weather Widget
 				<button
 					//only allow an weather api call once every 30 min
 					onClick={
 						throttle(() => {
-							this.props.fetchCurrentWeatherData();
+							this.props.fetchCurrentWeatherData(lat,lng);
 						}, 1800000)
 					}
 				>
