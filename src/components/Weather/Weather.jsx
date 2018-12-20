@@ -1,6 +1,13 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
+import { fetchCurrentWeatherData } from '../../redux/actions';
+
 class Weather extends React.Component {
+
+	componentDidMount() {
+		this.props.fetchCurrentWeatherData();
+	}
 
 	geolocation() {
 		if('geolocation' in navigator) {
@@ -21,7 +28,13 @@ class Weather extends React.Component {
 	}
 }
 
-export default Weather;
+const mapDispatchToProps = {
+	fetchCurrentWeatherData: fetchCurrentWeatherData
+};
+
+export default connect(null, mapDispatchToProps)(Weather);
+
+
 
 // dfc30b68dd8ff6cb50db4fccc515107a
 
