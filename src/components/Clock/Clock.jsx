@@ -1,6 +1,40 @@
 import React from 'react';
 
 class Clock extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state={
+			date: '',
+			time: ''
+		}
+	}
+
+	componentDidMount() {
+		this.timerID = setInterval(() => this.clockLocal(), 1000);
+		this.getDate();
+	}
+
+	componentWillUnmount() {
+		clearInterval(this.timerID);
+	}
+
+	getDate() {
+		let dateNow = new Date();
+
+		let dayOfMonth = dateNow.getDate();
+		let year = dateNow.getFullYear();
+
+		let monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+		let month = monthArray[dateNow.getMonth()];
+		let todayArray = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+		let today = todayArray[dateNow.getDay()];
+
+		let date = today + ', ' + month + ' ' + dayOfMonth + ', ' + year;
+
+		this.setState({date: date});
+
+		// console.log(today + ', ' + month + ' ' + dayOfMonth + ', ' + year);
+	}
 
 	clockLocal() {
 		let dateNow = new Date();
@@ -8,17 +42,9 @@ class Clock extends React.Component {
 
 		let suffix;
 
-		let dayOfMonth = dateNow.getDate();
-		let year = dateNow.getFullYear();
 		let hour = dateNow.getHours();
 		let minute = dateNow.getMinutes();
 		let second = dateNow.getSeconds();
-
-		let monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-		let month = monthArray[dateNow.getMonth()];
-		let todayArray = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
-		let today = todayArray[dateNow.getDay()];
-
 
 		//convert to 12 hr format
 		if(hour === 0){
@@ -44,29 +70,23 @@ class Clock extends React.Component {
 			second = '0'+second;
 		}
 
-		let date = today + ', ' + month + ' ' + dayOfMonth + ', ' + year;
 		let time = hour + ':' + minute + ':' + second + ' '+ suffix;
 
-		document.getElementById('date').innerHTML = date;
-		document.getElementById('time').innerHTML = time;
+		this.setState({time: time});
 
-		//console.log(today + ', ' + month + ' ' + dayOfMonth + ', ' + year);
-		//console.log(hour + ':' + minute + ':' + second + ' '+ suffix);
+		// console.log(hour + ':' + minute + ':' + second + ' '+ suffix);
 	}
 
 	render() {
-		setInterval(this.clockLocal, 1000);
 		return(
-
 			<div className="dateTime">
 				<div id="time" className="dateTime">
-
+					{this.state.time}
 				</div>
 				<div id="date" className="dateTime">
-
+					{this.state.date}
 				</div>
 			</div>
-
 		);
 	}
 }
