@@ -51,7 +51,7 @@ class App extends Component {
     render() {
         const images = this.buildImages();
         const settings = {
-            arrows: true,
+            arrows: false,
             dots: false,
             infinite: true,
             autoplay: true,
