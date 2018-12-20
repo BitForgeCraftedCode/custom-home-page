@@ -1,5 +1,5 @@
 
-
+//using redux thunk the returned function has dispatch and getState
 export const fetchCurrentWeatherData = () => {
 	return (dispatch) => {
 		fetch('https://jsonplaceholde.typicode.com/users')
