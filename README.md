@@ -3,6 +3,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Custom Home Page
 This is a remake of my first project on GitHub! I have learned a lot since that first commit! The idea is simple make this project your Chrome homepage and enjoy!
 
+https://myhomepage.surge.sh
+
 ## Available Scripts
 
 In the project directory, you can run:
