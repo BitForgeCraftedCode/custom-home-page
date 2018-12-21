@@ -1,8 +1,11 @@
-
-//using redux thunk the returned function has dispatch and getState
-export const fetchCurrentWeatherData = (lat, lng) => {
-	return (dispatch) => {
-		fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&APPID=dfc30b68dd8ff6cb50db4fccc515107a`)
+import throttle from 'lodash/throttle';
+/*30min throttle
+define the throttled fetch outside the action creator otherwise
+everytime the action creator gets called it will retrun a new throttle function
+and throttle will not work as intended
+*/
+const fetchWeather = throttle((dispatch, lat, lng) => {
+	fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&APPID=dfc30b68dd8ff6cb50db4fccc515107a`)
 			.then(res => res.json())
 			.then(
 				(result) => {
@@ -24,5 +27,22 @@ export const fetchCurrentWeatherData = (lat, lng) => {
 					});
 				}
 			)
-	};
+},1800000);
+
+/*
+export const fetchCurrentWeatherData = (lat,lng) => dispatch => fetchWeather(dispatch, lat,lng);
+'https://jsonplaceholder.typicode.com/users'
+
+action creator returns a function with dispatch which then returns the outer fetchWeather function
+with dispatch and the arguments (thunk can now execute this throttled function properly).
+
+Alt short hand syntax above as well as a test json placeholder endpoint
+see https://gist.github.com/krstffr/245fe83885b597aabaf06348220c2fe9
+*/
+export const fetchCurrentWeatherData = (lat,lng) => {
+	return (dispatch) => {
+		return fetchWeather(dispatch, lat,lng);
+	}
 };
+
+

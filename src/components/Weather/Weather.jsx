@@ -1,5 +1,4 @@
 import React from 'react';
-import throttle from 'lodash/throttle';
 import { connect } from 'react-redux';
 
 import { fetchCurrentWeatherData } from '../../redux/actions';
@@ -11,6 +10,9 @@ class Weather extends React.Component {
 			lat:null,
 			lng:null
 		}
+	}
+	componentDidMount() {
+		this.geolocation();
 	}
 
 	geolocation() {
@@ -28,42 +30,32 @@ class Weather extends React.Component {
 	}
 
 	render() {
-		this.geolocation();
-		let lat = this.state.lat;
-		let lng = this.state.lng;
+		const lat = this.state.lat;
+		const lng = this.state.lng;
+		const currentWeatherData = this.props.currentWeatherData;
 		console.log(lat,lng);
+		console.log(currentWeatherData);
 		return(
-
 			<div className="weather">Weather Widget
 				<button
-					//only allow an weather api call once every 30 min
-					onClick={
-						throttle(() => {
-							this.props.fetchCurrentWeatherData(lat,lng);
-						}, 1800000)
-					}
+					className="weather__btn"
+					onClick={()=>this.props.fetchCurrentWeatherData(lat, lng)}
 				>
-					Fetch weather
+					Get Weather
 				</button>
 			</div>
 		);
 	}
 }
 
+
+const mapStateToProps = (state) => {
+	return {
+		currentWeatherData: state.currentWeatherData,
+	};
+};
 const mapDispatchToProps = {
 	fetchCurrentWeatherData: fetchCurrentWeatherData
 };
 
-export default connect(null, mapDispatchToProps)(Weather);
-
-
-
-// dfc30b68dd8ff6cb50db4fccc515107a
-
-// http://api.openweathermap.org/data/2.5/weather?lat=40.951797899999995&lon=-74.1533448&APPID=dfc30b68dd8ff6cb50db4fccc515107a
-
-
-// http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=dfc30b68dd8ff6cb50db4fccc515107a
-
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(Weather);
