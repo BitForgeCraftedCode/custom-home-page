@@ -7,7 +7,7 @@ import Weather from './components/Weather/Weather';
 
 class App extends Component {
     buildImages() {
-        let folderChoice = 'Space';
+        let folderChoice = 'nature';
         /*https://webpack.js.org/guides/dependency-management/
         require.context() function takes 3 args
         1. a directory to search
