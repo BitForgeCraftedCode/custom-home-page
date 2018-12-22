@@ -41,3 +41,17 @@
         transform: scale(1.05);
     }
 }
+
+@media screen and (min-width: 750px) {
+	.weather {
+		width: 45%;
+		right: 0;
+		top: 15%;
+		margin-right: 10px;
+
+		&__btn {
+            width: 25%;
+    	}
+
+	}
+}
