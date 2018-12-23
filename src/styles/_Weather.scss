@@ -7,7 +7,7 @@
 	z-index: 1;
 	height: 100px;
 	width: 100%;
-	height: 150px;
+	height: auto;
 	background-color: $widgetBgColor;
 	font-family: $alarmClockFont;
 	color: $widgetFontColor;
@@ -17,6 +17,22 @@
 	border-radius: $border-radius-Xlarge;
 	font-size: $XL-font-size;
 	font-weight: bold;
+
+	&__icon-box {
+		display: flex;
+	}
+
+	&__icon-desc {
+		width: 50%;
+		padding-top: 20px;
+  		padding-bottom: 20px;
+	}
+
+	&__icon {
+		width: 50%;
+		margin: auto;
+
+	}
 
 	&__btn {
 		display: block;

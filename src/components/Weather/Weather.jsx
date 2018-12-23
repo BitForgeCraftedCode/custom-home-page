@@ -106,6 +106,7 @@ class Weather extends React.Component {
 		const currentWeatherData = this.props.currentWeatherData;
 		const loaded             = this.props.loaded;
 		let weather              = [];
+		let weatherIcons;
 
 		// console.log(lat,lng);
 		console.log(currentWeatherData);
@@ -113,6 +114,16 @@ class Weather extends React.Component {
 
 		if(lat !== null && lng !== null && currentWeatherData.length !== 0) {
 			weather = this.extractWeatherData(currentWeatherData);
+			weatherIcons = weather[1].map((data,index)=>{
+				return(
+					<div className="weather__icon-box" key={index}>
+						<div className="weather__icon-desc">{data.description}</div>
+						<div className="weather__icon">
+							<img src={`https://openweathermap.org/img/w/${data.icon}.png`} alt='weather icon'/>
+						</div>
+					</div>
+				);
+			});
 		}
 
 		//console.log(weather);
@@ -151,7 +162,7 @@ class Weather extends React.Component {
 			return(
 				<div className="weather">
 					<p>Current Conditions: {weather[0]}</p>
-
+					{weatherIcons}
 					<p>Time: {weather[2]}</p>
 					<p>Tempature: {weather[3]} &deg;F</p>
 					<p>Humidity: {weather[4]} %</p>
