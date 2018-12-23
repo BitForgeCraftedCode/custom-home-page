@@ -1,10 +1,4 @@
-@font-face {
-    font-family: 'alarm_clockregular';
-    src: url('alarm_clock-webfont.woff2') format('woff2'),
-         url('alarm_clock-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
+
 
 .weather {
 
@@ -12,18 +6,16 @@
 	top: 60%;
 	z-index: 1;
 	height: 100px;
-	background: white;
 	width: 100%;
 	height: 150px;
-	background-color: rgba(0,0,0,0.7);
-	font-family: 'alarm_clockregular';
-	color: #3BFE04;
+	background-color: $widgetBgColor;
+	font-family: $alarmClockFont;
+	color: $widgetFontColor;
 	text-transform: uppercase;
 	padding: 10px 0 0 10px;
 
-	border-radius: 15px;
-
-	font-size: 15px;
+	border-radius: $border-radius-Xlarge;
+	font-size: $XL-font-size;
 	font-weight: bold;
 
 	&__btn {
@@ -33,7 +25,6 @@
 		border-radius: 20px;
         width: 50%;
         border: none;
-        font-size: $default-font-size;
         padding: 5px;
 	}
 	&__btn:hover {

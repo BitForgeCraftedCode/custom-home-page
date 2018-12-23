@@ -1,4 +1,13 @@
 @charset "UTF-8";
+
+@font-face {
+    font-family: 'alarm_clockregular';
+    src: url('alarm_clock-webfont.woff2') format('woff2'),
+         url('alarm_clock-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /*Colors */
 
 $background-color1: rgba(233,233,233,1);
@@ -6,13 +15,21 @@ $background-color2: rgba(255,255,255,1);
 $hero-color1: rgba(9,3,125, 1);
 $hero-color2: rgba(28,53,175,1);
 
+$widgetBgColor: rgba(0,0,0,0.7);
+
 /*Font*/
 $default-font-size: 1.5rem;
 $big-font-size: 1.75rem;
+$XL-font-size: 2rem;
+$XXL-font-size: 4rem;
+
+$widgetFontColor: #3BFE04;
+$alarmClockFont: 'alarm_clockregular';
 
 /*border radius*/
 $border-radius-small: 6px;
 $border-radius-large: 10px;
+$border-radius-Xlarge: 15px;
 
 /*max width*/
 $max-width: 100rem;

@@ -5,7 +5,7 @@ everytime the action creator gets called it will retrun a new throttle function
 and throttle will not work as intended
 */
 const fetchWeather = throttle((dispatch, lat, lng) => {
-	fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&APPID=dfc30b68dd8ff6cb50db4fccc515107a`)
+	fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&APPID=dfc30b68dd8ff6cb50db4fccc515107a`)
 			.then(res => res.json())
 			.then(
 				(result) => {
