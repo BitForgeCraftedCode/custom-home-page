@@ -33,8 +33,51 @@ class Weather extends React.Component {
 		}
 	}
 
+	formatDate(unix_timestamp) {
+		// Create a new JavaScript Date object based on the timestamp
+		// multiplied by 1000 so that the argument is in milliseconds, not seconds.
+		const date = new Date(unix_timestamp*1000);
+
+		let hour = date.getHours();
+		let minute = date.getMinutes();
+		let second = date.getSeconds();
+
+		let suffix;
+		//convert to 12 hr format
+		if(hour === 0){
+			hour = hour + 12;
+			suffix = 'AM';
+		}
+		else if(hour >= 1 && hour <= 11){
+			suffix = 'AM';
+		}
+		else if(hour === 12){
+			suffix = 'PM';
+		}
+		else if(hour >= 13 && hour <= 23){
+			hour = hour - 12;
+			suffix = 'PM';
+		}
+		//format minute and second if less than 10
+		if(minute < 10 ){
+			minute = '0'+minute;
+		}
+		if(second < 10){
+			second = '0'+second;
+		}
+
+		const time = hour + ':' + minute + ':' + second + ' '+ suffix;
+
+		return time;
+	}
+
 	extractWeatherData(currentWeatherData) {
 		const town = currentWeatherData.name;
+		const weatherArray = currentWeatherData.weather;
+		//time of weather data calculation
+		const unix_timestamp1 = currentWeatherData.dt;
+		const calcTime = this.formatDate(unix_timestamp1);
+
 		//default Temp is Kelvin
 		const tempF = Math.round((((currentWeatherData.main.temp - 273.15)*(9/5))+32)*100)/100;
 		const humidity = currentWeatherData.main.humidity;
@@ -43,18 +86,14 @@ class Weather extends React.Component {
 		const windSpeed = Math.round(((currentWeatherData.wind.speed*0.001*60*60)/1.60934)*100)/100;
 		//convert meters to miles
 		const visibility = Math.round(((currentWeatherData.visibility*0.001)/1.60934)*100)/100;
+		//sunrise time
+		const unix_timestamp2 = currentWeatherData.sys.sunrise;
+		const sunrise = this.formatDate(unix_timestamp2);
+		//sunset
+		const unix_timestamp3 = currentWeatherData.sys.sunset;
+		const sunset = this.formatDate(unix_timestamp3);
 
-
-		// console.log('current conditions for: ', town);
-		// console.log(tempF,'degF');
-		// console.log('humidity',humidity, '%');
-		// console.log(mbar, 'mbar');
-		// console.log('windSpeed',windSpeed, 'miles/hr');
-		// console.log('visibility',visibility, 'miles');
-
-		// console.log(currentWeatherData.rain['1h']);
-		// console.log(currentWeatherData.snow);
-		const weather = [town,tempF,humidity,mbar,windSpeed,visibility];
+		const weather = [town,weatherArray,calcTime,tempF,humidity,mbar,windSpeed,visibility,sunrise,sunset];
 
 		return weather ;
 
@@ -69,7 +108,7 @@ class Weather extends React.Component {
 		let weather              = [];
 
 		// console.log(lat,lng);
-		// console.log(currentWeatherData);
+		console.log(currentWeatherData);
 		// console.log(loaded);
 
 		if(lat !== null && lng !== null && currentWeatherData.length !== 0) {
@@ -112,11 +151,15 @@ class Weather extends React.Component {
 			return(
 				<div className="weather">
 					<p>Current Conditions: {weather[0]}</p>
-					<p>Tempature: {weather[1]} &deg;F</p>
-					<p>Humidity: {weather[2]} %</p>
-					<p>Pressure: {weather[3]} mbar</p>
-					<p>Wind Speed: {weather[4]} miles/hr</p>
-					<p>Visibility: {weather[5]} miles</p>
+
+					<p>Time: {weather[2]}</p>
+					<p>Tempature: {weather[3]} &deg;F</p>
+					<p>Humidity: {weather[4]} %</p>
+					<p>Pressure: {weather[5]} mbar</p>
+					<p>Wind Speed: {weather[6]} miles/hr</p>
+					<p>Visibility: {weather[7]} miles</p>
+					<p>Sunrise: {weather[8]}</p>
+					<p>Sunset: {weather[9]}</p>
 					<button
 						className="weather__btn"
 						onClick={()=>this.props.fetchCurrentWeatherData(lat, lng)}
