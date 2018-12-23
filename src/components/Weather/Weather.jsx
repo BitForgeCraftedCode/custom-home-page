@@ -8,16 +8,19 @@ class Weather extends React.Component {
 		super(props);
 		this.state={
 			lat:null,
-			lng:null
+			lng:null,
+			locationAvail: null
 		}
 	}
+
 	componentDidMount() {
 		this.geolocation();
 	}
 
 	geolocation() {
 		if('geolocation' in navigator) {
-			console.log('geolocation available');
+			// console.log('geolocation available');
+			this.setState({locationAvail: true});
 			navigator.geolocation.getCurrentPosition((position) => {
   				let latLong = [position.coords.latitude, position.coords.longitude];
   				this.setState({lat: latLong[0]});
@@ -25,7 +28,8 @@ class Weather extends React.Component {
 			});
 		}
 		else {
-			console.log('geolocation Not available');
+			// console.log('geolocation Not available');
+			this.setState({locationAvail: false});
 		}
 	}
 
@@ -59,48 +63,76 @@ class Weather extends React.Component {
 	render() {
 		const lat                = this.state.lat;
 		const lng                = this.state.lng;
+		const locationAvail      = this.state.locationAvail;
 		const currentWeatherData = this.props.currentWeatherData;
+		const loaded             = this.props.loaded;
 		let weather              = [];
 
-		console.log(lat,lng);
-		console.log(currentWeatherData);
+		// console.log(lat,lng);
+		// console.log(currentWeatherData);
+		// console.log(loaded);
 
-		if(lat !== null && lng !== null && currentWeatherData.length !== 0 ) {
+		if(lat !== null && lng !== null && currentWeatherData.length !== 0) {
 			weather = this.extractWeatherData(currentWeatherData);
 		}
 
-		console.log(weather);
-		return(
-			<div className="weather">
-				{(weather.length === 0) ? (
-						<div>
-							<button
-								className="weather__btn"
-								onClick={()=>this.props.fetchCurrentWeatherData(lat, lng)}
-							>
-								Get Weather
-							</button>
-						</div>
-
-					):(
-						<div>
-							<p>Current Conditions for: {weather[0]}</p>
-							<p>Tempature: {weather[1]} &deg;F</p>
-							<p>Humidity: {weather[2]} %</p>
-							<p>Pressure: {weather[3]} mbar</p>
-							<p>Wind Speed: {weather[4]} miles/hr</p>
-							<p>Visibility: {weather[5]} miles</p>
-							<button
-								className="weather__btn"
-								onClick={()=>this.props.fetchCurrentWeatherData(lat, lng)}
-							>
-								Update Weather
-							</button>
-						</div>
-					)
-				}
-			</div>
-		);
+		//console.log(weather);
+		//conditional rendering
+		if(locationAvail === false) {
+			return(
+				<div className="weather">
+					<p>Weather Widget:</p>
+					<p>Sorry location is not available. Please turn on your GPS and
+					allow location access.</p>
+				</div>
+			);
+		}
+		else if(loaded === false) {
+			return(
+				<div className="weather">
+					<p>Weather Widget:</p>
+					<p>Sorry an error has occurred. Please refresh the page
+					and try back later.</p>
+				</div>
+			);
+		}
+		else if(locationAvail === true && lat !== null && lng !== null && weather.length === 0) {
+			return(
+				<div className="weather">
+	 				<button
+						className="weather__btn"
+						onClick={()=>this.props.fetchCurrentWeatherData(lat, lng)}
+					>
+						Get Weather
+					</button>
+ 				</div>
+			);
+		}
+		else if(locationAvail === true && lat !== null && lng !== null && weather.length !== 0) {
+			return(
+				<div className="weather">
+					<p>Current Conditions: {weather[0]}</p>
+					<p>Tempature: {weather[1]} &deg;F</p>
+					<p>Humidity: {weather[2]} %</p>
+					<p>Pressure: {weather[3]} mbar</p>
+					<p>Wind Speed: {weather[4]} miles/hr</p>
+					<p>Visibility: {weather[5]} miles</p>
+					<button
+						className="weather__btn"
+						onClick={()=>this.props.fetchCurrentWeatherData(lat, lng)}
+					>
+						Update Weather
+					</button>
+				</div>
+			);
+		}
+		else {
+			return(
+				<div className="weather">
+					<p>Fetching location...</p>
+				</div>
+			);
+		}
 	}
 }
 
@@ -108,6 +140,7 @@ class Weather extends React.Component {
 const mapStateToProps = (state) => {
 	return {
 		currentWeatherData: state.currentWeatherData,
+		loaded: state.loaded
 	};
 };
 const mapDispatchToProps = {

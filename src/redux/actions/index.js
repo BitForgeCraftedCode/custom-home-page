@@ -19,7 +19,7 @@ const fetchWeather = throttle((dispatch, lat, lng) => {
 				},
 				(error) => {
 					dispatch({
-						type: 'FETCH_CURRENTWEATHERDATA',
+						type: 'FETCH_ERROR',
 						payload: {
 							error: error,
 							loaded: false
