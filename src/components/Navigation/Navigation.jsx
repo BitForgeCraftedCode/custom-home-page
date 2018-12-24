@@ -57,6 +57,15 @@ class Navigation extends React.Component {
 								Weather
 							</Link>
 						</li>
+						<li className="nav__item-3">
+							<Link
+								to="/settings"
+								className="nav__link"
+								onClick={() => this.hideNav()}
+							>
+								Settings
+							</Link>
+						</li>
 					</div>
 				</ul>
 			</nav>

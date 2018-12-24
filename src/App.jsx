@@ -6,6 +6,7 @@ import Navigation from './components/Navigation/Navigation';
 import SearchBars from './components/SearchBars/SearchBars';
 import Clock from './components/Clock/Clock';
 import Weather from './components/Weather/Weather';
+import Settings from './components/Settings/Settings';
 
 class App extends Component {
     buildImages() {
@@ -64,7 +65,7 @@ class App extends Component {
         };
         return (
             <div className="App">
-                <Route exact path='/' render={()=>(
+                <Route exact path='/' render={() => (
                     <div>
                         <SearchBars />
                         <Clock />
@@ -72,6 +73,9 @@ class App extends Component {
                 )}/>
                 <Route path='/weather' render={() => (
                     <Weather />
+                )}/>
+                <Route path='/settings' render={() => (
+                    <Settings />
                 )}/>
                 <Navigation />
                 <Slider className="slider" {...settings}>
