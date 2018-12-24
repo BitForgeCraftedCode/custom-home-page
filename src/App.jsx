@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import Slider from "react-slick";
 
+import Navigation from './components/Navigation/Navigation';
 import SearchBars from './components/SearchBars/SearchBars';
 import Clock from './components/Clock/Clock';
 import Weather from './components/Weather/Weather';
@@ -62,12 +64,20 @@ class App extends Component {
         };
         return (
             <div className="App">
-                <SearchBars />
-                <Clock />
-                <Weather />
+                <Route exact path='/' render={()=>(
+                    <div>
+                        <SearchBars />
+                        <Clock />
+                    </div>
+                )}/>
+                <Route path='/weather' render={() => (
+                    <Weather />
+                )}/>
+                <Navigation />
                 <Slider className="slider" {...settings}>
                     {images}
                 </Slider>
+
             </div>
         );
     }
