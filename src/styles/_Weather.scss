@@ -3,9 +3,8 @@
 .weather {
 
 	position: absolute;
-	top: 60%;
+	top: 0;
 	z-index: 1;
-	height: 100px;
 	width: 100%;
 	height: auto;
 	background-color: $widgetBgColor;
@@ -14,7 +13,7 @@
 	text-transform: uppercase;
 	padding: 10px 0 0 10px;
 
-	border-radius: $border-radius-Xlarge;
+	// border-radius: $border-radius-Xlarge;
 	font-size: $XL-font-size;
 	font-weight: bold;
 
@@ -51,13 +50,16 @@
 
 @media screen and (min-width: 750px) {
 	.weather {
-		width: 45%;
-		right: 0;
-		top: 15%;
-		margin-right: 10px;
+		&__icon-desc{
+			width: 20%;
+		}
+
+		&__icon {
+			margin: 0 auto 0 0;
+		}
 
 		&__btn {
-            width: 25%;
+            width: 20%;
     	}
 
 	}
