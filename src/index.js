@@ -30,6 +30,7 @@ store.subscribe(throttle(() => {
 	//console.log(store.getState());
 	saveState({
 		currentWeatherData: store.getState().currentWeatherData,
+		background: store.getState().background,
 	});
 }, 1000));
 

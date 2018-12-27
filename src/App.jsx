@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Slider from "react-slick";
 
 import Navigation from './components/Navigation/Navigation';
@@ -9,8 +11,8 @@ import Weather from './components/Weather/Weather';
 import Settings from './components/Settings/Settings';
 
 class App extends Component {
-    buildImages() {
-        let folderChoice = 'nature';
+    buildImages(folder) {
+        let folderChoice = folder;
         /*https://webpack.js.org/guides/dependency-management/
         require.context() function takes 3 args
         1. a directory to search
@@ -53,7 +55,8 @@ class App extends Component {
     }
 
     render() {
-        const images = this.buildImages();
+        const folder = this.props.background;
+        const images = this.buildImages(folder);
         const settings = {
             arrows: false,
             dots: false,
@@ -87,4 +90,12 @@ class App extends Component {
     }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+    return {
+        background: state.background
+    };
+};
+
+
+export default withRouter(connect(mapStateToProps, null)(App));
+

@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
+
+import { switchBackgrounds } from '../../redux/actions';
+
 class Settings extends React.Component {
 	constructor(props) {
 		super(props);
@@ -19,6 +23,7 @@ class Settings extends React.Component {
 			alert('Please choose a background category');
 			return;
 		}
+		this.props.switchBackgrounds(this.state.bgChoice);
 	}
 
 	resetForm() {
@@ -41,7 +46,7 @@ class Settings extends React.Component {
 					    <option value="--Please choose an option--" disabled>--Please choose an option--</option>
 					    <option value="Nature">Nature</option>
 					    <option value="Space">Space</option>
-					    <option value="City Skylines">City Skylines</option>
+					    <option value="CitySkylines">CitySkylines</option>
 					    <option value="Animals">Animals</option>
 					    <option value="Ocean">Ocean</option>
 					</select>
@@ -66,4 +71,9 @@ class Settings extends React.Component {
 	}
 }
 
-export default Settings;
+const mapDispatchToProps = {
+	switchBackgrounds: switchBackgrounds
+};
+
+export default connect(null, mapDispatchToProps)(Settings);
+

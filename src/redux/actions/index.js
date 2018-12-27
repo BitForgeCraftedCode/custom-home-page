@@ -45,4 +45,11 @@ export const fetchCurrentWeatherData = (lat,lng) => {
 	}
 };
 
+export const switchBackgrounds = (folder) => {
+	return {
+		type: 'SWITCH_BACKGROUNDS',
+		payload: folder
+	};
+};
+
 
