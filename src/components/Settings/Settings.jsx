@@ -2,7 +2,7 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 
-import { switchBackgrounds } from '../../redux/actions';
+import { switchBackgrounds, changeDelay } from '../../redux/actions';
 
 class Settings extends React.Component {
 	constructor(props) {
@@ -29,6 +29,7 @@ class Settings extends React.Component {
 			return;
 		}
 		this.props.switchBackgrounds(this.state.bgChoice);
+		this.props.changeDelay(this.state.delay);
 		this.resetForm();
 	}
 
@@ -97,7 +98,8 @@ class Settings extends React.Component {
 }
 
 const mapDispatchToProps = {
-	switchBackgrounds: switchBackgrounds
+	switchBackgrounds: switchBackgrounds,
+	changeDelay: changeDelay
 };
 
 export default connect(null, mapDispatchToProps)(Settings);

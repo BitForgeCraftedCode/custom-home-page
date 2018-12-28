@@ -57,12 +57,15 @@ class App extends Component {
     render() {
         const folder = this.props.background;
         const images = this.buildImages(folder);
+        const delay = (this.props.delay)*1000;
         const settings = {
             arrows: false,
             dots: false,
             infinite: true,
             autoplay: true,
-            speed: 5000,
+            fade: true,
+            autoplaySpeed: delay,
+            speed: 1000,
             slidesToShow: 1,
             slidesToScroll: 1
         };
@@ -92,7 +95,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        background: state.background
+        background: state.background,
+        delay: state.delay
     };
 };
 

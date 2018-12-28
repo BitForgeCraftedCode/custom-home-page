@@ -3,7 +3,8 @@ import { combineReducers } from 'redux';
 const initialState = {
 	currentWeatherData: [],
 	loaded: true,
-	background: 'space'
+	background: 'space',
+	delay: 5
 }
 
 const currentWeatherData = (currentWeatherData = initialState.currentWeatherData, action) => {
@@ -33,10 +34,20 @@ const background = (background = initialState.background, action) => {
 		default:
 			return background;
 	}
-}
+};
+
+const delay = (delay =  initialState.delay, action) => {
+	switch(action.type) {
+		case 'CHANGE_DELAY':
+			return action.payload;
+		default:
+			return delay;
+	}
+};
 
 export default combineReducers({
 	currentWeatherData: currentWeatherData,
 	loaded: loaded,
-	background: background
+	background: background,
+	delay: delay
 });

@@ -52,4 +52,11 @@ export const switchBackgrounds = (folder) => {
 	};
 };
 
+export const changeDelay = (delay) => {
+	return {
+		type: 'CHANGE_DELAY',
+		payload: delay
+	};
+};
+
 
