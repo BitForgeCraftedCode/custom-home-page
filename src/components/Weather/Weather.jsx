@@ -38,6 +38,9 @@ class Weather extends React.Component {
 		// multiplied by 1000 so that the argument is in milliseconds, not seconds.
 		const date = new Date(unix_timestamp*1000);
 
+		let year = date.getFullYear();
+		let month = date.getMonth();
+		let day = date.getDate();
 		let hour = date.getHours();
 		let minute = date.getMinutes();
 		let second = date.getSeconds();
@@ -67,8 +70,9 @@ class Weather extends React.Component {
 		}
 
 		const time = hour + ':' + minute + ':' + second + ' '+ suffix;
+		const monthDayYear = `${month+1}/${day}/${year}`;
 
-		return time;
+		return [time,monthDayYear];
 	}
 
 	extractWeatherData(currentWeatherData) {
@@ -161,16 +165,16 @@ class Weather extends React.Component {
 		else if(locationAvail === true && lat !== null && lng !== null && weather.length !== 0) {
 			return(
 				<div className="weather">
-					<p>Current Conditions: {weather[0]}</p>
+					<p>Current Conditions: {`${weather[0]} ${weather[2][1]}`}</p>
 					{weatherIcons}
-					<p>Time: {weather[2]}</p>
+					<p>Time: {weather[2][0]}</p>
 					<p>Tempature: {weather[3]} &deg;F</p>
 					<p>Humidity: {weather[4]} %</p>
 					<p>Pressure: {weather[5]} mbar</p>
 					<p>Wind Speed: {weather[6]} miles/hr</p>
 					<p>Visibility: {weather[7]} miles</p>
-					<p>Sunrise: {weather[8]}</p>
-					<p>Sunset: {weather[9]}</p>
+					<p>Sunrise: {weather[8][0]}</p>
+					<p>Sunset: {weather[9][0]}</p>
 					<button
 						className="weather__btn"
 						onClick={()=>this.props.fetchCurrentWeatherData(lat, lng)}
