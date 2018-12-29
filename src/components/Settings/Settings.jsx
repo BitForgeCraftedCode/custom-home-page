@@ -23,7 +23,6 @@ class Settings extends React.Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		console.log(this.state.delay);
 		if(this.state.bgChoice === '--Please choose an option--' || this.state.delay === '--Please choose an option--') {
 			alert('Please select background category and delay');
 			return;

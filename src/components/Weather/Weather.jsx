@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { formatDate } from '../../modules/formatDate';
 import { fetchCurrentWeatherData } from '../../redux/actions';
 
 class Weather extends React.Component {
@@ -33,51 +32,20 @@ class Weather extends React.Component {
 			this.setState({locationAvail: false});
 		}
 	}
-	//factor this to reducer
-	extractWeatherData(currentWeatherData) {
-		const town = currentWeatherData.name;
-		const weatherArray = currentWeatherData.weather;
-		//time of weather data calculation
-		const unix_timestamp1 = currentWeatherData.dt;
-		const calcTime = formatDate(unix_timestamp1);
-		//default Temp is Kelvin
-		const tempF = Math.round((((currentWeatherData.main.temp - 273.15)*(9/5))+32)*100)/100;
-		const humidity = currentWeatherData.main.humidity;
-		const mbar = currentWeatherData.main.pressure;
-		//convert meters per second to miles per hour
-		const windSpeed = Math.round(((currentWeatherData.wind.speed*0.001*60*60)/1.60934)*100)/100;
-		//convert meters to miles
-		const visibility = Math.round(((currentWeatherData.visibility*0.001)/1.60934)*100)/100;
-		//cloud cover %
-		const clouds = currentWeatherData.clouds.all;
-		//sunrise time
-		const unix_timestamp2 = currentWeatherData.sys.sunrise;
-		const sunrise = formatDate(unix_timestamp2);
-		//sunset
-		const unix_timestamp3 = currentWeatherData.sys.sunset;
-		const sunset = formatDate(unix_timestamp3);
-
-		const weather = [town,weatherArray,calcTime,tempF,humidity,mbar,windSpeed,visibility,clouds,sunrise,sunset];
-
-		return weather ;
-
-	}
 
 	render() {
 		const lat                = this.state.lat;
 		const lng                = this.state.lng;
 		const locationAvail      = this.state.locationAvail;
-		const currentWeatherData = this.props.currentWeatherData;
+		const weather            = this.props.currentWeatherData;
 		const loaded             = this.props.loaded;
-		let weather              = [];
 		let weatherIcons;
 
 		// console.log(lat,lng);
-		console.log(currentWeatherData);
+		// console.log(weather);
 		// console.log(loaded);
 
-		if(lat !== null && lng !== null && currentWeatherData.length !== 0) {
-			weather = this.extractWeatherData(currentWeatherData);
+		if(lat !== null && lng !== null && weather.length !== 0) {
 			weatherIcons = weather[1].map((data,index)=>{
 				return(
 					<div className="weather__icon-box" key={index}>
@@ -90,7 +58,6 @@ class Weather extends React.Component {
 			});
 		}
 
-		//console.log(weather);
 		//conditional rendering
 		if(locationAvail === false) {
 			return(
@@ -129,11 +96,11 @@ class Weather extends React.Component {
 					{weatherIcons}
 					<p>Time: {weather[2][0]}</p>
 					<p>Tempature: {weather[3]} &deg;F</p>
-					<p>Humidity: {weather[4]} %</p>
+					<p>Humidity: {weather[4]}%</p>
 					<p>Pressure: {weather[5]} mbar</p>
 					<p>Wind Speed: {weather[6]} miles/hr</p>
 					<p>Visibility: {weather[7]} miles</p>
-					<p>Cloud Cover: {weather[8]} %</p>
+					<p>Cloud Cover: {weather[8]}%</p>
 					<p>Sunrise: {weather[9][0]}</p>
 					<p>Sunset: {weather[10][0]}</p>
 					<button
