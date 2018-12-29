@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { formatDate } from '../../modules/formatDate';
 import { fetchCurrentWeatherData } from '../../redux/actions';
 
 class Weather extends React.Component {
@@ -33,54 +34,12 @@ class Weather extends React.Component {
 		}
 	}
 
-	formatDate(unix_timestamp) {
-		// Create a new JavaScript Date object based on the timestamp
-		// multiplied by 1000 so that the argument is in milliseconds, not seconds.
-		const date = new Date(unix_timestamp*1000);
-
-		let year = date.getFullYear();
-		let month = date.getMonth();
-		let day = date.getDate();
-		let hour = date.getHours();
-		let minute = date.getMinutes();
-		let second = date.getSeconds();
-
-		let suffix;
-		//convert to 12 hr format
-		if(hour === 0){
-			hour = hour + 12;
-			suffix = 'AM';
-		}
-		else if(hour >= 1 && hour <= 11){
-			suffix = 'AM';
-		}
-		else if(hour === 12){
-			suffix = 'PM';
-		}
-		else if(hour >= 13 && hour <= 23){
-			hour = hour - 12;
-			suffix = 'PM';
-		}
-		//format minute and second if less than 10
-		if(minute < 10 ){
-			minute = '0'+minute;
-		}
-		if(second < 10){
-			second = '0'+second;
-		}
-
-		const time = hour + ':' + minute + ':' + second + ' '+ suffix;
-		const monthDayYear = `${month+1}/${day}/${year}`;
-
-		return [time,monthDayYear];
-	}
-
 	extractWeatherData(currentWeatherData) {
 		const town = currentWeatherData.name;
 		const weatherArray = currentWeatherData.weather;
 		//time of weather data calculation
 		const unix_timestamp1 = currentWeatherData.dt;
-		const calcTime = this.formatDate(unix_timestamp1);
+		const calcTime = formatDate(unix_timestamp1);
 
 		//default Temp is Kelvin
 		const tempF = Math.round((((currentWeatherData.main.temp - 273.15)*(9/5))+32)*100)/100;
@@ -92,10 +51,10 @@ class Weather extends React.Component {
 		const visibility = Math.round(((currentWeatherData.visibility*0.001)/1.60934)*100)/100;
 		//sunrise time
 		const unix_timestamp2 = currentWeatherData.sys.sunrise;
-		const sunrise = this.formatDate(unix_timestamp2);
+		const sunrise = formatDate(unix_timestamp2);
 		//sunset
 		const unix_timestamp3 = currentWeatherData.sys.sunset;
-		const sunset = this.formatDate(unix_timestamp3);
+		const sunset = formatDate(unix_timestamp3);
 
 		const weather = [town,weatherArray,calcTime,tempF,humidity,mbar,windSpeed,visibility,sunrise,sunset];
 
