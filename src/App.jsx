@@ -6,6 +6,7 @@ import Slider from "react-slick";
 
 import Navigation from './components/Navigation/Navigation';
 import SearchBars from './components/SearchBars/SearchBars';
+import QuickLinks from './components/QuickLinks/QuickLinks';
 import Clock from './components/Clock/Clock';
 import Weather from './components/Weather/Weather';
 import Settings from './components/Settings/Settings';
@@ -75,6 +76,7 @@ class App extends Component {
                     <div>
                         <SearchBars />
                         <Clock />
+                        <QuickLinks />
                     </div>
                 )}/>
                 <Route path='/weather' render={() => (
