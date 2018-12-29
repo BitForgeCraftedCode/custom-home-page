@@ -33,14 +33,13 @@ class Weather extends React.Component {
 			this.setState({locationAvail: false});
 		}
 	}
-
+	//factor this to reducer
 	extractWeatherData(currentWeatherData) {
 		const town = currentWeatherData.name;
 		const weatherArray = currentWeatherData.weather;
 		//time of weather data calculation
 		const unix_timestamp1 = currentWeatherData.dt;
 		const calcTime = formatDate(unix_timestamp1);
-
 		//default Temp is Kelvin
 		const tempF = Math.round((((currentWeatherData.main.temp - 273.15)*(9/5))+32)*100)/100;
 		const humidity = currentWeatherData.main.humidity;
@@ -49,6 +48,8 @@ class Weather extends React.Component {
 		const windSpeed = Math.round(((currentWeatherData.wind.speed*0.001*60*60)/1.60934)*100)/100;
 		//convert meters to miles
 		const visibility = Math.round(((currentWeatherData.visibility*0.001)/1.60934)*100)/100;
+		//cloud cover %
+		const clouds = currentWeatherData.clouds.all;
 		//sunrise time
 		const unix_timestamp2 = currentWeatherData.sys.sunrise;
 		const sunrise = formatDate(unix_timestamp2);
@@ -56,7 +57,7 @@ class Weather extends React.Component {
 		const unix_timestamp3 = currentWeatherData.sys.sunset;
 		const sunset = formatDate(unix_timestamp3);
 
-		const weather = [town,weatherArray,calcTime,tempF,humidity,mbar,windSpeed,visibility,sunrise,sunset];
+		const weather = [town,weatherArray,calcTime,tempF,humidity,mbar,windSpeed,visibility,clouds,sunrise,sunset];
 
 		return weather ;
 
@@ -132,8 +133,9 @@ class Weather extends React.Component {
 					<p>Pressure: {weather[5]} mbar</p>
 					<p>Wind Speed: {weather[6]} miles/hr</p>
 					<p>Visibility: {weather[7]} miles</p>
-					<p>Sunrise: {weather[8][0]}</p>
-					<p>Sunset: {weather[9][0]}</p>
+					<p>Cloud Cover: {weather[8]} %</p>
+					<p>Sunrise: {weather[9][0]}</p>
+					<p>Sunset: {weather[10][0]}</p>
 					<button
 						className="weather__btn"
 						onClick={()=>this.props.fetchCurrentWeatherData(lat, lng)}
