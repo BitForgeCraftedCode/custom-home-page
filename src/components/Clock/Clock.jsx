@@ -1,17 +1,25 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class Clock extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state={
 			date: '',
-			time: ''
+			time: '',
+			temp: '',
+			humidity: ''
 		}
 	}
 
 	componentDidMount() {
 		this.timerID = setInterval(() => this.clockLocal(), 1000);
 		this.getDate();
+		const weather = this.props.currentWeatherData;
+		if(weather.length !== 0) {
+			this.setState({temp: weather[3]});
+			this.setState({humidity: weather[4]});
+		}
 	}
 
 	componentWillUnmount() {
@@ -85,10 +93,18 @@ class Clock extends React.Component {
 				</div>
 				<div id="date" className="dateTime">
 					{this.state.date}
+					<p>Tempature: {this.state.temp} &deg;F</p>
+					<p>Humidity: {this.state.humidity}%</p>
 				</div>
 			</div>
 		);
 	}
 }
 
-export default Clock;
+const mapStateToProps = (state) => {
+	return {
+		currentWeatherData: state.currentWeatherData
+	};
+};
+
+export default connect(mapStateToProps, null)(Clock);
