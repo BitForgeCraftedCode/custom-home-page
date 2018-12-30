@@ -10,6 +10,7 @@ import QuickLinks from './components/QuickLinks/QuickLinks';
 import Clock from './components/Clock/Clock';
 import Weather from './components/Weather/Weather';
 import Settings from './components/Settings/Settings';
+import QuickLinkSettings from './components/Settings/QuickLinkSettings';
 
 class App extends Component {
     buildImages(folder) {
@@ -83,7 +84,10 @@ class App extends Component {
                     <Weather />
                 )}/>
                 <Route path='/settings' render={() => (
-                    <Settings />
+                    <div>
+                        <Settings />
+                        <QuickLinkSettings />
+                    </div>
                 )}/>
                 <Navigation />
                 <Slider className="slider" {...settings}>
