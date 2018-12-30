@@ -31,7 +31,8 @@ store.subscribe(throttle(() => {
 	saveState({
 		currentWeatherData: store.getState().currentWeatherData,
 		background: store.getState().background,
-		delay: store.getState().delay
+		delay: store.getState().delay,
+		quickLinks: store.getState().quickLinks
 	});
 }, 1000));
 

@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
+
+import { displayQuickLinks } from '../../redux/actions';
+
 class QuickLinkSettings extends React.Component {
 	constructor(props) {
 		super(props);
@@ -23,6 +27,7 @@ class QuickLinkSettings extends React.Component {
 			return;
 		}
 		console.log(this.state.QLChoice);
+		this.props.displayQuickLinks(this.state.QLChoice);
 		this.resetForm();
 	}
 
@@ -96,4 +101,8 @@ class QuickLinkSettings extends React.Component {
 	}
 }
 
-export default QuickLinkSettings;
+const mapDispatchToProps = {
+	displayQuickLinks: displayQuickLinks,
+};
+
+export default connect(null, mapDispatchToProps)(QuickLinkSettings);

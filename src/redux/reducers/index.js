@@ -6,7 +6,8 @@ const initialState = {
 	currentWeatherData: [],
 	loaded: true,
 	background: 'space',
-	delay: 5
+	delay: 5,
+	quickLinks: []
 }
 
 const currentWeatherData = (currentWeatherData = initialState.currentWeatherData, action) => {
@@ -73,9 +74,19 @@ const delay = (delay =  initialState.delay, action) => {
 	}
 };
 
+const quickLinks = (quickLinks = initialState.quickLinks, action) => {
+	switch(action.type) {
+		case 'DISPLAY_QUICKLINKS':
+			return action.payload;
+		default:
+			return quickLinks;
+	}
+};
+
 export default combineReducers({
 	currentWeatherData: currentWeatherData,
 	loaded: loaded,
 	background: background,
-	delay: delay
+	delay: delay,
+	quickLinks: quickLinks
 });

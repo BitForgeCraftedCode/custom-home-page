@@ -59,4 +59,10 @@ export const changeDelay = (delay) => {
 	};
 };
 
+export const displayQuickLinks = (quickLinks) => {
+	return {
+		type: 'DISPLAY_QUICKLINKS',
+		payload: quickLinks
+	};
+};
 
