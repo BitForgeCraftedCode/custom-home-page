@@ -88,6 +88,13 @@ class QuickLinks extends React.Component {
 			{icon: github, url: 'https://github.com/', name: 'github'},
 			{icon: slack, url: 'https://slack.com/', name: 'slack'},
 		];
+		/*
+		filter links against each quickLink chosen in settings to build the shortcuts array
+		(shortcuts is now an array of link objects)
+
+		chunk shortcuts array to size 4
+		build the DOM for each chunk array
+		*/
 		const quickLinks = this.props.quickLinks;
 		const QLlength = quickLinks.length;
 		let shortcuts = [];
