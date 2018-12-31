@@ -78,22 +78,29 @@ class App extends Component {
                         <SearchBars />
                         <Clock />
                         <QuickLinks />
+                        <Navigation />
+                        <Slider className="slider" {...settings}>
+                            {images}
+                        </Slider>
                     </div>
                 )}/>
                 <Route path='/weather' render={() => (
-                    <Weather />
+                    <div>
+                        <Weather />
+                        <Navigation />
+                        <Slider className="slider" {...settings}>
+                            {images}
+                        </Slider>
+                    </div>
+
                 )}/>
                 <Route path='/settings' render={() => (
                     <div>
                         <Settings />
                         <QuickLinkSettings />
+                        <Navigation />
                     </div>
                 )}/>
-                <Navigation />
-                <Slider className="slider" {...settings}>
-                    {images}
-                </Slider>
-
             </div>
         );
     }
