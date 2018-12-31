@@ -1,10 +1,10 @@
 @charset "UTF-8";
-
-.settings {
+body {
+	height: 100vh;
+}
+.SliderSettings {
 	position: absolute;
 	z-index: 1;
-	background: $background-color1;
-    background: linear-gradient(90deg, $background-color1 0%, $background-color2 50%, $background-color1 100%);
 
 	text-align: center;
 	width: 100%;
@@ -32,20 +32,43 @@
 .QLsettings {
 	position: absolute;
 	z-index: 1;
-	background: $background-color1;
-    background: linear-gradient(90deg, $background-color1 0%, $background-color2 50%, $background-color1 100%);
-
-	top: 300px;
+	top: 220px;
 
 	text-align: center;
 	width: 100%;
 	max-width: $max-width;
 	padding: 10px;
+
+	&__fieldset {
+		padding: 5px;
+	}
+
+	&__label {
+		display: block;
+	}
+
+	&__select {
+		padding: 5px;
+		margin: 5px;
+		width: 100%;
+	}
+
+	&__btnContainer {
+		margin-top: 10px;
+	}
 }
 
 @media screen and (min-width: 750px) {
-	.settings {
+	.SliderSettings {
 		left: 50%;
 		transform: translateX(-50%);
+	}
+
+	.QLsettings {
+		left: 50%;
+		transform: translateX(-50%);
+		&__select {
+			width: 50%;
+		}
 	}
 }

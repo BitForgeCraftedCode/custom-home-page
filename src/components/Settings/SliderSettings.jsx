@@ -41,12 +41,12 @@ class SliderSettings extends React.Component {
 
 	render() {
 		return(
-			<form className="settings" onSubmit={(e) => this.handleSubmit(e)}>
-				<fieldset className="settings__fieldset">
-					<legend className="settings__legend">Choose Background Category:</legend>
-					<label className="settings__label" htmlFor="backgrounds-select">Backgrounds:</label>
+			<form className="SliderSettings" onSubmit={(e) => this.handleSubmit(e)}>
+				<fieldset className="SliderSettings__fieldset">
+					<legend className="SliderSettings__legend">Choose Background Category:</legend>
+					<label className="SliderSettings__label" htmlFor="backgrounds-select">Backgrounds:</label>
 					<select
-						className="settings__select"
+						className="SliderSettings__select"
 						id="backgrounds-select"
 						value={this.state.bgChoice}
 						onChange={(e) => this.handleBgChange(e)}
@@ -59,11 +59,11 @@ class SliderSettings extends React.Component {
 					    <option value="Ocean">Ocean</option>
 					</select>
 				</fieldset>
-				<fieldset className="settings__fieldset">
-					<legend className="settings__legend">Choose Background Delay:</legend>
-					<label className="settings__label" htmlFor="delay-select">Delay:</label>
+				<fieldset className="SliderSettings__fieldset">
+					<legend className="SliderSettings__legend">Choose Background Delay:</legend>
+					<label className="SliderSettings__label" htmlFor="delay-select">Delay:</label>
 					<select
-						className="settings__select"
+						className="SliderSettings__select"
 						id="delay-select"
 						value={this.state.delay}
 						onChange={(e) => this.handleDelayChange(e)}
@@ -76,7 +76,7 @@ class SliderSettings extends React.Component {
 					    <option value="30">30 Seconds</option>
 					</select>
 				</fieldset>
-				<div className="settings__btnContainer">
+				<div className="SliderSettings__btnContainer">
 					<button
 						type="submit"
 						value="Submit"
