@@ -9,7 +9,7 @@ import SearchBars from './components/SearchBars/SearchBars';
 import QuickLinks from './components/QuickLinks/QuickLinks';
 import Clock from './components/Clock/Clock';
 import Weather from './components/Weather/Weather';
-import Settings from './components/Settings/Settings';
+import SliderSettings from './components/Settings/SliderSettings';
 import QuickLinkSettings from './components/Settings/QuickLinkSettings';
 
 class App extends Component {
@@ -96,7 +96,7 @@ class App extends Component {
                 )}/>
                 <Route path='/settings' render={() => (
                     <div>
-                        <Settings />
+                        <SliderSettings />
                         <QuickLinkSettings />
                         <Navigation />
                     </div>

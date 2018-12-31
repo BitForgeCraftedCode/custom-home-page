@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { switchBackgrounds, changeDelay } from '../../redux/actions';
 
-class Settings extends React.Component {
+class SliderSettings extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state={
@@ -43,7 +43,7 @@ class Settings extends React.Component {
 		return(
 			<form className="settings" onSubmit={(e) => this.handleSubmit(e)}>
 				<fieldset className="settings__fieldset">
-					<legend className="settings__legend">Choose a background category:</legend>
+					<legend className="settings__legend">Choose Background Category:</legend>
 					<label className="settings__label" htmlFor="backgrounds-select">Backgrounds:</label>
 					<select
 						className="settings__select"
@@ -60,7 +60,7 @@ class Settings extends React.Component {
 					</select>
 				</fieldset>
 				<fieldset className="settings__fieldset">
-					<legend className="settings__legend">Choose background delay:</legend>
+					<legend className="settings__legend">Choose Background Delay:</legend>
 					<label className="settings__label" htmlFor="delay-select">Delay:</label>
 					<select
 						className="settings__select"
@@ -81,7 +81,7 @@ class Settings extends React.Component {
 						type="submit"
 						value="Submit"
 					>
-						Change Settings
+						Change Slideshow Settings
 					</button>
 					<button
 						type="button"
@@ -101,5 +101,5 @@ const mapDispatchToProps = {
 	changeDelay: changeDelay
 };
 
-export default connect(null, mapDispatchToProps)(Settings);
+export default connect(null, mapDispatchToProps)(SliderSettings);
 
