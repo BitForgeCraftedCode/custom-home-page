@@ -49,25 +49,27 @@ class QuickLinkSettings extends React.Component {
 						value={this.state.QLChoice}
 						onChange={(e) => this.handleQLChange(e)}
 						multiple={true}
-						size="6"
+						size="10"
 					>
 						<optgroup label="Social Media">
 						    <option value="twitter">Twitter</option>
 						    <option value="pinterest">Pinterest</option>
 						    <option value="facebook">FaceBook</option>
 						    <option value="linkedin">LinkedIn</option>
-						    <option value="github">Github</option>
+						    <option value="tumblr">Tumblr</option>
+						    <option value="snapchat">Snapchat</option>
+						    <option value="instagram">Instagram</option>
+						    <option value="meetup">Meetup</option>
 						</optgroup>
-						<optgroup label="Search Engines">
+						<optgroup label="Search Engines and Email">
 						    <option value="google">Google</option>
+						    <option value="gmail">Gmail</option>
 						    <option value="google_maps">Google Maps</option>
 						    <option value="bing">Bing</option>
 						    <option value="msn">MSN</option>
 						    <option value="yahoo">Yahoo</option>
+						    <option value="yahoo_mail">Yahoo Mail</option>
 						    <option value="duckduckgo">DuckDuckGo</option>
-						</optgroup>
-						<optgroup label="Email">
-						    <option value="gmail">Gmail</option>
 						</optgroup>
 						<optgroup label="Shopping">
 						    <option value="amazon">Amazon</option>
@@ -76,7 +78,16 @@ class QuickLinkSettings extends React.Component {
 						</optgroup>
 						<optgroup label="Entertainment">
 						    <option value="netflix">Netflix</option>
+						    <option value="hulu">Hulu</option>
 						    <option value="youtube">Youtube</option>
+						    <option value="reddit">Reddit</option>
+						    <option value="imgur">Imgur</option>
+						    <option value="ninegag">9gag</option>
+						</optgroup>
+						<optgroup label="Other">
+						    <option value="weather">Weather</option>
+						    <option value="github">Github</option>
+						    <option value="slack">Slack</option>
 						</optgroup>
 					</select>
 				</fieldset>
