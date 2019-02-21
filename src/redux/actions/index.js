@@ -3,9 +3,14 @@ import throttle from 'lodash/throttle';
 define the throttled fetch outside the action creator otherwise
 everytime the action creator gets called it will retrun a new throttle function
 and throttle will not work as intended
+
+`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&APPID=YOURAPIKEY123akjdlkjaldfkj`
+`http://localhost:5000?lat=${lat}&lon=${lng}`
+`https://vast-lake-42765.herokuapp.com?lat=${lat}&lon=${lng}`
 */
+
 const fetchWeather = throttle((dispatch, lat, lng) => {
-	fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&APPID=dfc30b68dd8ff6cb50db4fccc515107a`)
+	fetch(`https://vast-lake-42765.herokuapp.com?lat=${lat}&lon=${lng}`)
 			.then(res => res.json())
 			.then(
 				(result) => {

@@ -5,6 +5,28 @@ This is a remake of my first project on GitHub! I have learned a lot since that 
 
 https://myhomepage.surge.sh
 
+## [Open Weather Map](https://openweathermap.org/) 
+This project fetches weather from the open weather map api. You will need your own
+API key to run this project locally or to host your own instance. You will also want 
+to proxy the api requests so as not to expose your key on the front end.
+Feel free to host this yourself and add your favorite pictures. 
+
+## API Proxy
+
+I proxied the api requests with [Heroku](https://www.heroku.com/) and [node-api-proxy](https://github.com/jesperorb/node-api-proxy)
+
+This prevents exposing the api key on the front-end 
+
+## Open Proxy Problem!!
+Ok so setting up the heroku proxy server is better than exposing the api key but now
+I have an open proxy
+
+Next step figure out how to restrict the proxy!!
+
+Need to learn more server programming first..
+
+getting full stack is no joke!!
+
 ## Available Scripts
 
 In the project directory, you can run:
