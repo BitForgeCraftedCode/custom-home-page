@@ -11,28 +11,30 @@ and throttle will not work as intended
 
 const fetchWeather = throttle((dispatch, lat, lng) => {
 	fetch(`https://vast-lake-42765.herokuapp.com?lat=${lat}&lon=${lng}`)
-			.then(res => res.json())
-			.then(
-				(result) => {
-					dispatch({
-						type: 'FETCH_CURRENTWEATHERDATA',
-						payload: {
-							result: result,
-							loaded: true
-						}
-					});
-				},
-				(error) => {
-					dispatch({
-						type: 'FETCH_ERROR',
-						payload: {
-							error: error,
-							loaded: false
-						}
-					});
-				}
-			)
-},1800000);
+		.then(res => res.json())
+		.then(
+			result => {
+				dispatch({
+					type: 'FETCH_CURRENTWEATHERDATA_SUCCESS',
+					payload: {
+						result: result,
+						loaded: true,
+						btnClicked: false
+					}
+				});
+			},
+			error => {
+				dispatch({
+					type: 'FETCH_ERROR',
+					payload: {
+						error: error,
+						loaded: true,
+						btnClicked: false
+					}
+				});
+			}
+		);
+}, 1800000);
 
 /*
 export const fetchCurrentWeatherData = (lat,lng) => dispatch => fetchWeather(dispatch, lat,lng);
@@ -44,30 +46,36 @@ with dispatch and the arguments (thunk can now execute this throttled function p
 Alt short hand syntax above as well as a test json placeholder endpoint
 see https://gist.github.com/krstffr/245fe83885b597aabaf06348220c2fe9
 */
-export const fetchCurrentWeatherData = (lat,lng) => {
-	return (dispatch) => {
-		return fetchWeather(dispatch, lat,lng);
-	}
+export const fetchCurrentWeatherData = (lat, lng) => {
+	return dispatch => {
+		dispatch({
+			type: 'FETCH_CURRENTWEATHERDATA',
+			payload: {
+				loaded: false,
+				btnClicked: true
+			}
+		});
+		return fetchWeather(dispatch, lat, lng);
+	};
 };
 
-export const switchBackgrounds = (folder) => {
+export const switchBackgrounds = folder => {
 	return {
 		type: 'SWITCH_BACKGROUNDS',
 		payload: folder
 	};
 };
 
-export const changeDelay = (delay) => {
+export const changeDelay = delay => {
 	return {
 		type: 'CHANGE_DELAY',
 		payload: delay
 	};
 };
 
-export const displayQuickLinks = (quickLinks) => {
+export const displayQuickLinks = quickLinks => {
 	return {
 		type: 'DISPLAY_QUICKLINKS',
 		payload: quickLinks
 	};
 };
-
