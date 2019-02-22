@@ -105,6 +105,20 @@ class Weather extends React.Component {
 		);
 	};
 
+	buildWeatherIcons = weather => {
+		let weatherIcons = weather[1].map((data, index) => {
+			return (
+				<div className="weather__icon-box" key={index}>
+					<div className="weather__icon-desc">{data.description}</div>
+					<div className="weather__icon">
+						<img src={`https://openweathermap.org/img/w/${data.icon}.png`} alt="weather icon" />
+					</div>
+				</div>
+			);
+		});
+		return weatherIcons;
+	};
+
 	render() {
 		const lat = this.state.lat;
 		const lng = this.state.lng;
@@ -113,31 +127,11 @@ class Weather extends React.Component {
 		const error = this.props.currentWeatherData[0].error;
 		const loaded = this.props.currentWeatherData[0].loaded;
 		const btnClicked = this.props.currentWeatherData[0].btnClicked;
-		let weatherIcons;
 
 		// console.log('locationAvail ',locationAvail);
 		// console.log('lat long ', lat,lng);
 		// console.log(weather);
 		// console.log(error);
-
-		//weather will be an object if the api returned an error obj
-		if (
-			lat !== null &&
-			lng !== null &&
-			weather.length !== 0 &&
-			!(typeof weather === 'object' && weather.constructor === Object)
-		) {
-			weatherIcons = weather[1].map((data, index) => {
-				return (
-					<div className="weather__icon-box" key={index}>
-						<div className="weather__icon-desc">{data.description}</div>
-						<div className="weather__icon">
-							<img src={`https://openweathermap.org/img/w/${data.icon}.png`} alt="weather icon" />
-						</div>
-					</div>
-				);
-			});
-		}
 
 		//conditional rendering
 		//display this if user denied access or location is not available
@@ -166,7 +160,7 @@ class Weather extends React.Component {
 			return (
 				<div className="weather">
 					<p>Current Conditions: {`${weather[0]} ${weather[2][1]}`}</p>
-					{weatherIcons}
+					{this.buildWeatherIcons(weather)}
 					<p>Time: {weather[2][0]}</p>
 					<p>Tempature: {weather[3]} &deg;F</p>
 					<p>Humidity: {weather[4]}%</p>
