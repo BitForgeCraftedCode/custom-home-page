@@ -10,18 +10,49 @@ body {
 	width: 100%;
 	max-width: $max-width;
 	padding: 10px;
+	margin-bottom: 10px;
 
 	&__fieldset {
 		padding: 5px;
+		margin-bottom: 10px;
+		border-radius: $border-radius-Xlarge;
 	}
 
 	&__label {
 		display: block;
 	}
 
+	&__select-div {
+		margin: 5px auto 5px auto;
+		border: 1px solid black;
+		width: 280px;
+		border-radius: $border-radius-Xlarge;
+		overflow: hidden;
+		background: $background-color1 url("../icons/arrow-dropdown.svg") no-repeat 90% 50%;
+	}
+
 	&__select {
-		padding: 5px;
-		margin: 5px;
+		font-size: $default-font-size;
+  		font-family: $defaultFont;
+
+		padding: 5px 8px;
+		width: 100%;
+		border: none;
+		box-shadow: none;
+		background: transparent;
+		background-image: none;
+		-webkit-appearance: none;
+	}
+
+	&__select:focus {
+		outline: none;
+		background: $grey url("../icons/arrow-dropdown.svg") no-repeat 90% 50%;
+	}
+
+	&__select:hover {
+		outline: none;
+		background: $grey url("../icons/arrow-dropdown.svg") no-repeat 90% 50%;
+		cursor: pointer;
 	}
 
 	&__btnContainer {
@@ -41,6 +72,7 @@ body {
 
 	&__fieldset {
 		padding: 5px;
+		border-radius: $border-radius-Xlarge;
 	}
 
 	&__label {

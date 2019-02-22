@@ -9,7 +9,7 @@
 }
 
 /*Colors */
-
+$grey: #dbdbdb;
 $background-color1: rgba(233,233,233,1);
 $background-color2: rgba(255,255,255,1);
 $hero-color1: rgba(9,3,125, 1);
@@ -25,11 +25,12 @@ $XXL-font-size: 4rem;
 
 $widgetFontColor: #3BFE04;
 $alarmClockFont: 'alarm_clockregular';
+$defaultFont : sans-serif;
 
 /*border radius*/
 $border-radius-small: 6px;
 $border-radius-large: 10px;
-$border-radius-Xlarge: 15px;
+$border-radius-Xlarge: 20px;
 
 /*max width*/
 $max-width: 75rem;
