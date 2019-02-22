@@ -70,7 +70,7 @@ class Weather extends React.Component {
 		);
 	};
 
-	renderError = (lat,lng) => {
+	renderError = (lat, lng) => {
 		return (
 			<div className="weather">
 				<p>Weather Widget:</p>
@@ -82,7 +82,7 @@ class Weather extends React.Component {
 		);
 	};
 
-	renderInitial = (lat,lng) => {
+	renderInitial = (lat, lng) => {
 		return (
 			<div className="weather">
 				<button className="weather__btn" onClick={() => this.props.fetchCurrentWeatherData(lat, lng)}>
@@ -118,8 +118,15 @@ class Weather extends React.Component {
 		// console.log('locationAvail ',locationAvail);
 		// console.log('lat long ', lat,lng);
 		// console.log(weather);
+		// console.log(error);
 
-		if (lat !== null && lng !== null && weather.length !== 0) {
+		//weather will be an object if the api returned an error obj
+		if (
+			lat !== null &&
+			lng !== null &&
+			weather.length !== 0 &&
+			!(typeof weather === 'object' && weather.constructor === Object)
+		) {
 			weatherIcons = weather[1].map((data, index) => {
 				return (
 					<div className="weather__icon-box" key={index}>
@@ -142,12 +149,13 @@ class Weather extends React.Component {
 			return this.renderGettingLocation();
 		}
 		//display this if an error occured
-		else if (error) {
-			return this.renderError(lat,lng);
+		//weather will be an object if the api returned an error obj
+		else if (error || (typeof weather === 'object' && weather.constructor === Object)) {
+			return this.renderError(lat, lng);
 		}
 		//initial state before btn click and no saved weather
 		else if (loaded === false && btnClicked === false && weather.length === 0) {
-			return this.renderInitial(lat,lng);
+			return this.renderInitial(lat, lng);
 		}
 		//display getting weather spinner
 		else if (loaded === false && btnClicked === true) {
