@@ -15,7 +15,7 @@ class Clock extends React.Component {
 	componentDidMount() {
 		this.timerID = setInterval(() => this.clockLocal(), 1000);
 		this.getDate();
-		const weather = this.props.currentWeatherData;
+		const weather = this.props.currentWeatherData[0].currentWeather;
 		if(weather.length !== 0) {
 			this.setState({temp: weather[3]});
 			this.setState({humidity: weather[4]});
