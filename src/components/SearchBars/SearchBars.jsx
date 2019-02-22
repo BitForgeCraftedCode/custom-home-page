@@ -6,33 +6,32 @@ class SearchBars extends React.Component {
 		this.state = {
 			searchGoogle: '',
 			searchBing: ''
-		}
+		};
 	}
 
 	handleSearchGoogleChange(e) {
-		this.setState({searchGoogle: e.target.value});
+		this.setState({ searchGoogle: e.target.value });
 	}
 
 	handleSeachBingChange(e) {
-		this.setState({searchBing: e.target.value});
+		this.setState({ searchBing: e.target.value });
 	}
 
 	clearSearch() {
-		this.setState({searchGoogle: ''});
-		this.setState({searchBing: ''});
+		this.setState({ searchGoogle: '' });
+		this.setState({ searchBing: '' });
 	}
 	render() {
-		return(
+		return (
 			<div className="searchBars">
 				<iframe
 					src="https://duckduckgo.com/search.html?duck=yes&prefill=Search"
 					className="searchBars__DuckDuck"
 					title="Search DuckDuckGo"
-				>
-				</iframe>
+				/>
 
 				<form
-					action="http://www.google.com/search"
+					action="https://www.google.com/search"
 					className="searchBars__searchform"
 					method="get"
 					target="_blank"
@@ -44,14 +43,14 @@ class SearchBars extends React.Component {
 						name="q"
 						value={this.state.searchGoogle}
 						placeholder="Search Google"
-						onChange={(e)=>this.handleSearchGoogleChange(e)}
+						onChange={e => this.handleSearchGoogleChange(e)}
 						required="required"
 						type="text"
 					/>
 				</form>
 
 				<form
-					action="http://www.bing.com/search"
+					action="https://www.bing.com/search"
 					className="searchBars__searchform"
 					method="get"
 					target="_blank"
@@ -63,15 +62,12 @@ class SearchBars extends React.Component {
 						name="q"
 						value={this.state.searchBing}
 						placeholder="Search Bing"
-						onChange={(e)=>this.handleSeachBingChange(e)}
+						onChange={e => this.handleSeachBingChange(e)}
 						required="required"
 						type="text"
 					/>
 				</form>
-				<button
-					onClick={()=>this.clearSearch()}
-					className="searchBars__btn"
-				>
+				<button onClick={() => this.clearSearch()} className="appBtn">
 					Clear Search
 				</button>
 			</div>

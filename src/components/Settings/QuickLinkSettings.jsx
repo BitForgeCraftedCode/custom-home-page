@@ -96,11 +96,11 @@ class QuickLinkSettings extends React.Component {
 					</div>
 				</fieldset>
 
-				<div className="QLsettings__btnContainer">
-					<button type="submit" value="Submit">
+				<div className="appBtnContainer">
+					<button className="appBtn" type="submit" value="Submit">
 						Add Links
 					</button>
-					<button type="button" value="Reset" onClick={() => this.resetForm()}>
+					<button className="appBtn" type="button" value="Reset" onClick={() => this.resetForm()}>
 						Cancel
 					</button>
 				</div>

@@ -75,9 +75,11 @@ class Weather extends React.Component {
 			<div className="weather">
 				<p>Weather Widget:</p>
 				<p>Sorry an error has occurred. Please refresh the page and try back later.</p>
-				<button className="weather__btn" onClick={() => this.props.fetchCurrentWeatherData(lat, lng)}>
-					Get Weather
-				</button>
+				<div className="appBtnContainer">
+					<button className="appBtn" onClick={() => this.props.fetchCurrentWeatherData(lat, lng)}>
+						Get Weather
+					</button>
+				</div>
 			</div>
 		);
 	};
@@ -85,9 +87,11 @@ class Weather extends React.Component {
 	renderInitial = (lat, lng) => {
 		return (
 			<div className="weather">
-				<button className="weather__btn" onClick={() => this.props.fetchCurrentWeatherData(lat, lng)}>
-					Get Weather
-				</button>
+				<div className="appBtnContainer">
+					<button className="appBtn" onClick={() => this.props.fetchCurrentWeatherData(lat, lng)}>
+						Get Weather
+					</button>
+				</div>
 			</div>
 		);
 	};
@@ -170,9 +174,11 @@ class Weather extends React.Component {
 					<p>Cloud Cover: {weather[8]}%</p>
 					<p>Sunrise: {weather[9][0]}</p>
 					<p>Sunset: {weather[10][0]}</p>
-					<button className="weather__btn" onClick={() => this.props.fetchCurrentWeatherData(lat, lng)}>
-						Update Weather
-					</button>
+					<div className="appBtnContainer">
+						<button className="appBtn" onClick={() => this.props.fetchCurrentWeatherData(lat, lng)}>
+							Update Weather
+						</button>
+					</div>
 				</div>
 			);
 		}

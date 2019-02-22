@@ -91,11 +91,11 @@ class SliderSettings extends React.Component {
 						</select>
 					</div>
 				</fieldset>
-				<div className="SliderSettings__btnContainer">
-					<button type="submit" value="Submit">
+				<div className="appBtnContainer">
+					<button className="appBtn" type="submit" value="Submit">
 						Change Slideshow Settings
 					</button>
-					<button type="button" value="Reset" onClick={() => this.resetForm()}>
+					<button className="appBtn" type="button" value="Reset" onClick={() => this.resetForm()}>
 						Cancel
 					</button>
 				</div>

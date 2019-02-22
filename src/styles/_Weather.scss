@@ -1,4 +1,4 @@
-
+@charset "UTF-8";
 
 .weather {
 
@@ -36,22 +36,7 @@
 	&__icon {
 		width: 50%;
 		margin: auto;
-
 	}
-
-	&__btn {
-		display: block;
-		margin: 5px auto;
-
-		border-radius: 20px;
-        width: 50%;
-        border: none;
-        padding: 5px;
-	}
-	&__btn:hover {
-        cursor: pointer;
-        transform: scale(1.05);
-    }
 }
 
 @media screen and (min-width: 750px) {
@@ -63,10 +48,5 @@
 		&__icon {
 			margin: 0 auto 0 0;
 		}
-
-		&__btn {
-            width: 20%;
-    	}
-
 	}
 }

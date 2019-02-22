@@ -1,5 +1,33 @@
 @charset "UTF-8";
 
+// button styles for all app buttons. I know think components not inheritance
+// but this is too easy 
+.appBtnContainer {
+	text-align: center;
+	margin: 5px;
+}
+.appBtn {
+	font-size: $default-font-size;
+	font-family: $defaultFont;
+
+	background-color: $grey;
+	border-radius: $border-radius-Xlarge;
+	border: none;
+	padding: 10px 20px;	
+	margin: 5px;
+}
+
+.appBtn:focus {
+	outline: 2px solid blue;
+	transform: scale(1.05);
+}
+
+.appBtn:hover {
+	cursor: pointer;
+	transform: scale(1.05);
+}
+//end app btn styles
+
 .App {
   overflow: hidden;
 }

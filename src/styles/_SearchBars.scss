@@ -26,27 +26,11 @@
     	width: 100%;
     	height: 30px;
     }
-
-    &__btn {
-        border-radius: 20px;
-        width: 50%;
-        border: none;
-        padding: 10px;
-    }
-
-    &__btn:hover {
-        cursor: pointer;
-        transform: scale(1.05);
-    }
 }
 
 @media screen and (min-width: 750px) {
     .searchBars {
         width: 50%;
         // transform: translateX(50%);
-
-        &__btn {
-            width: 25%;
-        }
     }
 }
