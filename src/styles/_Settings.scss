@@ -79,10 +79,40 @@ body {
 		display: block;
 	}
 
+	&__select-div {
+		margin: 5px auto 5px auto;
+		border: 1px solid black;
+		width: 80%;
+		border-radius: $border-radius-large;
+		overflow: hidden;
+		background: $background-color1;
+	}
+
 	&__select {
-		padding: 5px;
-		margin: 5px;
-		width: 100%;
+		font-size: $default-font-size;
+  		font-family: $defaultFont;
+
+		padding: 10px 40px;
+		width: 98%;
+		border: none;
+		box-shadow: none;
+		background: transparent;
+		background-image: none;
+		-webkit-appearance: none;
+	}
+
+	&__select option {
+		width: 150px;
+	}
+
+	&__select:focus {
+		outline: none;
+	}
+
+	&__select option:hover {
+		outline: none;
+		background: $grey;
+		cursor: pointer;
 	}
 
 	&__btnContainer {
@@ -99,9 +129,6 @@ body {
 	.QLsettings {
 		left: 50%;
 		transform: translateX(-50%);
-		&__select {
-			width: 50%;
-		}
 	}
 }
 
