@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import Slider from "react-slick";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 import Navigation from './components/Navigation/Navigation';
 import SearchBars from './components/SearchBars/SearchBars';
@@ -101,6 +103,7 @@ class App extends Component {
                         <Navigation />
                     </div>
                 )}/>
+                <ToastContainer />
             </div>
         );
     }

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { toast } from 'react-toastify';
 import { connect } from 'react-redux';
 
 import { displayQuickLinks } from '../../redux/actions';
@@ -12,6 +12,18 @@ class QuickLinkSettings extends React.Component {
 		};
 	}
 
+	toastError = () => {
+		toast.error('Please select quick links!', {
+			position: toast.POSITION.TOP_CENTER
+		});
+	};
+
+	success = () => {
+		toast.success(`Quick Links Updated!`, {
+			position: toast.POSITION.TOP_CENTER
+		});
+	};
+
 	handleQLChange(e) {
 		let links = this.state.QLChoice;
 		links.push(e.target.value);
@@ -23,11 +35,12 @@ class QuickLinkSettings extends React.Component {
 	handleSubmit(e) {
 		e.preventDefault();
 		if (this.state.QLChoice.length === 0) {
-			alert('Please select quick links');
+			this.toastError();
 			return;
 		}
 		console.log(this.state.QLChoice);
 		this.props.displayQuickLinks(this.state.QLChoice);
+		this.success();
 		this.resetForm();
 	}
 

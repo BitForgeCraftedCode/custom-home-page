@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { toast } from 'react-toastify';
 import { connect } from 'react-redux';
 
 import { switchBackgrounds, changeDelay } from '../../redux/actions';
@@ -12,6 +12,18 @@ class SliderSettings extends React.Component {
 			delay: '--Please choose an option--'
 		};
 	}
+
+	toastError = () => {
+		toast.error('Please select background category and delay!', {
+			position: toast.POSITION.TOP_CENTER
+		});
+	};
+
+	success = () => {
+		toast.success(`Background Settings Updated!`, {
+			position: toast.POSITION.TOP_CENTER
+		});
+	};
 
 	handleBgChange(e) {
 		this.setState({ bgChoice: e.target.value });
@@ -27,11 +39,12 @@ class SliderSettings extends React.Component {
 			this.state.bgChoice === '--Please choose an option--' ||
 			this.state.delay === '--Please choose an option--'
 		) {
-			alert('Please select background category and delay');
+			this.toastError();
 			return;
 		}
 		this.props.switchBackgrounds(this.state.bgChoice);
 		this.props.changeDelay(this.state.delay);
+		this.success();
 		this.resetForm();
 	}
 
